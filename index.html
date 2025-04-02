@@ -1,0 +1,140 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head>     
+    <meta charset="UTF-8">     
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">     
+    <title>Birthday Celebration</title>     
+    <style>         
+        body {             
+            font-family: Arial, sans-serif;             
+            text-align: center;             
+            background: url('https://i.ibb.co/8wBLSpr/img2.jpg') no-repeat center center fixed !important;             
+            background-size: cover !important;             
+            color: white;             
+            padding: 50px;             
+            overflow: hidden;         
+        }         
+        .container {             
+            display: none;             
+            opacity: 0;             
+            transition: opacity 1s;         
+        }         
+        .active {             
+            display: block;             
+            opacity: 1;         
+        }         
+        h1 {             
+            font-size: 3em;         
+        }         
+        button {             
+            background-color: #ff4b5c;             
+            color: white;             
+            border: none;             
+            padding: 15px 30px;             
+            font-size: 1.2em;             
+            cursor: pointer;             
+            border-radius: 10px;             
+            margin-top: 20px;         
+        }         
+        button:hover {             
+            background-color: #c73c4a;         
+        }         
+        .celebration {             
+            display: none;             
+            font-size: 2em;             
+            margin-top: 20px;             
+            animation: bounce 1s infinite;         
+        }         
+        @keyframes bounce {             
+            0%, 100% { transform: translateY(0); }             
+            50% { transform: translateY(-10px); }         
+        }         
+        .balloon {             
+            position: absolute;             
+            font-size: 2em;             
+            color: red; /* Ensures heart balloons are red */             
+            animation: fall 5s linear infinite;         
+        }         
+        @keyframes fall {             
+            0% { transform: translateY(-100vh); opacity: 1; }             
+            100% { transform: translateY(100vh); opacity: 0; }         
+        }         
+        .intro {             
+            position: relative; /* Adjusted from fixed to relative */             
+            color: white;             
+            font-size: 3em;             
+            margin-bottom: 20px;         
+        }     
+        .birthday-image {             
+            width: 300px; /* Adjust size as needed */             
+            height: auto;             
+            border-radius: 15px;             
+            margin-top: 10px;         
+        }    
+        .top-left-image {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>     
+    <script>         
+        function nextPage(current, next) {             
+            document.getElementById(current).classList.remove("active");             
+            setTimeout(() => {                 
+                document.getElementById(next).classList.add("active");             
+            }, 500);         
+        }         
+        function checkAnswer() {             
+            let input = document.getElementById("nameInput").value.trim().toLowerCase();             
+            if (input === "kuccccciii pucchiiii") {                 
+                document.getElementById("taskPage").classList.remove("active");                 
+                setTimeout(() => {                     
+                    document.getElementById("celebrationPage").classList.add("active");                     
+                    startBalloons();                 
+                }, 500);             
+            } else {                 
+                alert("Try again! Hint: It starts with K and ends with I.");             
+            }         
+        }         
+        function startBalloons() {             
+            for (let i = 0; i < 20; i++) {                 
+                let balloon = document.createElement("div");                 
+                balloon.classList.add("balloon");                 
+                balloon.innerHTML = "❤️"; // Red heart emoji                 
+                balloon.style.left = Math.random() * 100 + "vw";                 
+                balloon.style.animationDuration = (Math.random() * 2 + 3) + "s";                 
+                document.body.appendChild(balloon);                 
+                setTimeout(() => balloon.remove(), 5000);             
+            }         
+        }     
+    </script> 
+</head> 
+<body>     
+    <div id="welcomePage" class="container active">   
+        <h1 class="intro">Hey Universe, Welcome to Your World!</h1>   
+        <img width="200px" src="https://i.ibb.co/XxrnyQ33/Whats-App-Image-2025-04-02-at-12-49-33-f451e072.jpg" alt="Top right Image" class="top-right-image"> <!-- Add the correct image URL -->
+        <img src="https://i.ibb.co/twYhLFDf/birthdayboy.jpg" alt="Birthday Girl" class="birthday-image"> <!-- Add the correct image URL -->   
+        <button onclick="nextPage('welcomePage', 'wishingPage')">Click Next</button>   
+    </div>      
+    <div id="wishingPage" class="container">         
+        <h1>First of all, wishing you a very beautiful and Happy Birthday, Universe!</h1>         
+        <button onclick="nextPage('wishingPage', 'taskPage')">Click Next</button>     
+    </div>      
+    <div id="taskPage" class="container">         
+        <h1>Task: Type the name given by Aditya</h1>         
+        <p>Hint: Starts with K and ends with I</p>         
+        <input type="text" id="nameInput" placeholder="Enter name here">         
+        <button onclick="checkAnswer()">Submit</button>     
+    </div>      
+    <div id="celebrationPage" class="container">         
+        <h1 class="celebration">🎉 Congratulations! 🎉</h1>         
+        <h2>Happy Birthday, Kuccccciii Pucchiiii!</h2>         
+        <p>Wishing you a lifetime of happiness, love, and success. Enjoy your special day!</p>
+        <img width="200px" src="https://i.ibb.co/cckXbMw2/Whats-App-Image-2025-04-02-at-12-48-54-5ec45ff7.jpg" alt="Top right Image" class="top-right-image"> <!-- Add the correct image URL -->     
+        <img src="https://i.ibb.co/G4rnrpgv/birthday2.jpg" alt="Celebration Image" class="birthday-image"> <!-- Add second image URL here -->     
+    </div> 
+</body> 
+</html>
